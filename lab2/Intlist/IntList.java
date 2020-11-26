@@ -97,8 +97,19 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        if (A == null) {
+            return B;
+        }
+        IntList returnList = new IntList (A.first , null);
+        IntList q = returnList;
+        A = A.rest;
+        while (A != null){
+            q.rest = new IntList(A.first, null);
+            A = A.rest;
+            q = q.rest;
+        }
+        q.rest = B;
+        return returnList;
     }
 
 
