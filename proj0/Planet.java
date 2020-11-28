@@ -7,7 +7,7 @@ public class Planet {
     public double yyVel;//Its current velocity in the y direction
     public double mass;//Its mass
     public String imgFileName;//The name of the file that corresponds to the image
-    public final Double Gravity = 6.67E-11;
+    private final Double Gravity = 6.67E-11;
     public Planet(double xP, double yP, double xV,
                   double yV, double m, String img){
         xxPos = xP;
