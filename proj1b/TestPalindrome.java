@@ -6,20 +6,46 @@ public class TestPalindrome {
     // new Palindromes, or the autograder might be upset.
     static Palindrome palindrome = new Palindrome();
     @Test
-    public void testisPalindrome() {
+    public void testisPalindrome1() {
+        assertTrue(palindrome.isPalindrome("taat"));
+    }
+    @Test
+    public void testisPalindrome2() {
 //        assertTrue(palindrome.isPalindrome("taat"));
 //        assertFalse(palindrome.isPalindrome("cat"));
-        assertFalse(palindrome.isPalindrome("aA"));
-    } 
+        assertFalse(palindrome.isPalindrome("caA"));
+    }
 
     @Test
     public void testisPalindromeOffByOne() {
         assertTrue(palindrome.isPalindrome("dede", new OffByOne()));
     }
+    @Test
+    public void TestPalindromeOffByOne3() {
+        CharacterComparator cc = new OffByOne();
+        assertTrue(palindrome.isPalindrome("AcdB", cc));
+    }
 
+    @Test
+    public void TestPalindromeOffByOne4() {
+        CharacterComparator cc = new OffByOne();
+        assertFalse(palindrome.isPalindrome("stttt", cc));
+    }
     @Test
     public void testisPalindromeOffByN() {
         assertTrue(palindrome.isPalindrome("dfdf", new OffByN(2)));
+    }
+
+    @Test
+    public void TestPalindromeOffByN3() {
+        CharacterComparator cc = new OffByN(5);
+        assertTrue(palindrome.isPalindrome("AhcF", cc));
+    }
+
+    @Test
+    public void TestPalindromeOffByN4() {
+        CharacterComparator cc = new OffByN(5);
+        assertFalse(palindrome.isPalindrome("stttt", cc));
     }
 
     @Test

@@ -9,7 +9,7 @@ public class TestOffByN {
 
     // Your tests go here.
     @Test
-    public void testequalChars(){
+    public void testequalChars() {
         OffByN obo = new OffByN(3);
         assertTrue(obo.equalChars('a', 'd'));
     }

@@ -11,7 +11,7 @@ public class Palindrome {
         return isdequePalindrome(lld);
     }
     private boolean isdequePalindrome(Deque lld) {
-        if (lld.size() <= 1){
+        if (lld.size() <= 1) {
             return true;
         }
         if (lld.removeFirst() == lld.removeLast()) {
