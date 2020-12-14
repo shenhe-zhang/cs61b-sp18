@@ -6,15 +6,20 @@ public class TestPalindrome {
     // new Palindromes, or the autograder might be upset.
     static Palindrome palindrome = new Palindrome();
     @Test
-    public void testisPalindrome(){
+    public void testisPalindrome() {
 //        assertTrue(palindrome.isPalindrome("taat"));
 //        assertFalse(palindrome.isPalindrome("cat"));
         assertFalse(palindrome.isPalindrome("aA"));
+    } 
+
+    @Test
+    public void testisPalindromeOffByOne() {
+        assertTrue(palindrome.isPalindrome("dede", new OffByOne()));
     }
 
     @Test
-    public void testisPalindromeOffByOne(){
-        assertTrue(palindrome.isPalindrome("aa",new OffByOne()));
+    public void testisPalindromeOffByN() {
+        assertTrue(palindrome.isPalindrome("dfdf", new OffByN(2)));
     }
 
     @Test

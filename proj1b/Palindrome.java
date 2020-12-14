@@ -1,38 +1,39 @@
 public class Palindrome {
-    public Deque<Character> wordToDeque(String word){
+    public Deque<Character> wordToDeque(String word) {
         Deque lld = new LinkedListDeque();
-        for(int i=0; i<=word.length()-1; i++) {
+        for (int i = 0; i <= word.length() - 1; i++) {
             lld.addLast(word.charAt(i));
         }
         return lld;
     }
-    public boolean isPalindrome(String word){
+    public boolean isPalindrome(String word) {
         Deque lld = wordToDeque(word);
         return isdequePalindrome(lld);
     }
-    private boolean isdequePalindrome(Deque lld){
+    private boolean isdequePalindrome(Deque lld) {
         if (lld.size() <= 1){
             return true;
         }
-        if (lld.removeFirst() == lld.removeLast()){
+        if (lld.removeFirst() == lld.removeLast()) {
             return isdequePalindrome(lld);
-        }else {
+        } else {
             return false;
         }
     }
 
-    public boolean isPalindrome(String word, CharacterComparator cc){
+    public boolean isPalindrome(String word, CharacterComparator cc) {
         Deque lld = wordToDeque(word);
         return isdequePalindrome(lld, cc);
     }
-    private boolean isdequePalindrome(Deque lld, CharacterComparator cc){
-        if (lld.size() <= 1){
+    private boolean isdequePalindrome(Deque lld, CharacterComparator cc) {
+        if (lld.size() <= 1) {
             return true;
         }
-        if (cc.equalChars((Character) lld.removeFirst(),(Character) lld.removeLast())){
-            return isdequePalindrome(lld);
-        }else {
+        if (cc.equalChars((Character) lld.removeFirst(), (Character) lld.removeLast())) {
+            return isdequePalindrome(lld, cc);
+        } else {
             return false;
         }
     }
+
 }
