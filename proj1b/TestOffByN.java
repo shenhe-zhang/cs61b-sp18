@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class TestOffByOne {
+public class TestOffByN {
 
     // You must use this CharacterComparator and not instantiate
     // new ones, or the autograder might be upset.
@@ -10,8 +10,7 @@ public class TestOffByOne {
     // Your tests go here.
     @Test
     public void testequalChars(){
-        OffByOne obo = new OffByOne();
-        assertTrue(obo.equalChars('a', 'b'));
+        OffByN obo = new OffByN(3);
+        assertTrue(obo.equalChars('a', 'd'));
     }
-    /*Uncomment this class once you've created your CharacterComparator interface and OffByOne class. **/
 }
