@@ -21,13 +21,13 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("dede", new OffByOne()));
     }
     @Test
-    public void TestPalindromeOffByOne3() {
+    public void testPalindromeOffByOne3() {
         CharacterComparator cc = new OffByOne();
         assertTrue(palindrome.isPalindrome("AcdB", cc));
     }
 
     @Test
-    public void TestPalindromeOffByOne4() {
+    public void testPalindromeOffByOne4() {
         CharacterComparator cc = new OffByOne();
         assertFalse(palindrome.isPalindrome("stttt", cc));
     }
@@ -37,13 +37,13 @@ public class TestPalindrome {
     }
 
     @Test
-    public void TestPalindromeOffByN3() {
+    public void testPalindromeOffByN3() {
         CharacterComparator cc = new OffByN(5);
         assertTrue(palindrome.isPalindrome("AhcF", cc));
     }
 
     @Test
-    public void TestPalindromeOffByN4() {
+    public void testPalindromeOffByN4() {
         CharacterComparator cc = new OffByN(5);
         assertFalse(palindrome.isPalindrome("stttt", cc));
     }
