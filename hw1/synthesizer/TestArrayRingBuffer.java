@@ -13,6 +13,8 @@ public class TestArrayRingBuffer {
         arb.enqueue("t1");
         arb.enqueue("t2");
         assertEquals("t1",arb.peek());
+        assertEquals("t1",arb.dequeue());
+        assertEquals("t2",arb.dequeue());
     }
 
     /** Calls tests for ArrayRingBuffer. */

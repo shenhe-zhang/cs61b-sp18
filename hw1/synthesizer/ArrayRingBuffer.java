@@ -37,7 +37,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
     @Override
     public void enqueue(T x) {
         // TODO: Enqueue the item. Don't forget to increase fillCount and update last.
-        if (fillCount == capacity) {
+        if (isFull()) {
             throw new RuntimeException("Ring buffer overflow");
         }
         rb[last] = x;
@@ -55,16 +55,16 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
      * covered Monday.
      */
     public T dequeue() {
-        // TODO: Dequeue the first item. Don't forget to decrease fillCount and update
+        // TODO: Dequeue the first item. Don't forget to decrease fillCount and update first
         if (fillCount == 0) {
             throw new RuntimeException("Ring buffer underflow");
         }
         T output = rb[first];
         fillCount--;
-        if (first == 0) {
-            first = capacity - 1;
+        if (first == capacity - 1) {
+            first = 0;
         } else {
-            first--;
+            first++;
         }
         return output;
     }
@@ -74,6 +74,9 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
      */
     public T peek() {
         // TODO: Return the first item. None of your instance variables should change.
+        if (isEmpty()) {
+            throw new RuntimeException("Ring buffer underflow");
+        }
         return rb[first];
     }
 
@@ -99,13 +102,20 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
 
     }
 
-//    public static void main(String[] args){
-//        ArrayRingBuffer arb = new ArrayRingBuffer(10);
-//        arb.enqueue("t1");
-//        arb.enqueue("t2");
-//        System.out.println(arb.fillCount);
-//        System.out.println(arb.dequeue());
-//        System.out.println(arb.fillCount);
-//        System.out.println(arb.capacity);
-//    }
+    public static void main(String[] args){
+        ArrayRingBuffer arb = new ArrayRingBuffer(3);
+
+        arb.enqueue("t1");
+        arb.enqueue("t2");
+        arb.enqueue("t3");
+        System.out.println(arb.first);
+        System.out.println(arb.fillCount);
+        System.out.println(arb.dequeue());
+        System.out.println(arb.first);
+        System.out.println(arb.fillCount);
+        System.out.println(arb.dequeue());
+        arb.enqueue("t3");
+        System.out.println(arb.fillCount);
+        System.out.println(arb.capacity);
+    }
 }
