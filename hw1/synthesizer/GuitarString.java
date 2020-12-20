@@ -18,7 +18,7 @@ public class GuitarString {
         //       cast the result of this divsion operation into an int. For better
         //       accuracy, use the Math.round() function before casting.
         //       Your buffer should be initially filled with zeros.
-        buffer = new ArrayRingBuffer((int)Math.round(SR / frequency));
+        buffer = new ArrayRingBuffer((int) Math.round(SR / frequency));
     }
 
 
@@ -41,7 +41,7 @@ public class GuitarString {
         // TODO: Dequeue the front sample and enqueue a new sample that is
         //       the average of the two multiplied by the DECAY factor.
         //       Do not call StdAudio.play().
-        Double front= buffer.dequeue();
+        Double front = buffer.dequeue();
         Double second = buffer.peek();
         buffer.enqueue(DECAY * 0.5 * (front + second));
     }
