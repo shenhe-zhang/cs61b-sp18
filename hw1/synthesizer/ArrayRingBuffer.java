@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 //TODO: Make sure to make this class and all of its methods public
 //TODO: Make sure to make this class extend AbstractBoundedQueue<t>
-public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Iterable<T> {
+public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     /* Index for the next dequeue or peek. */
     private int first;            // index for the next dequeue or peek
     /* Index for the next enqueue. */
@@ -56,7 +56,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
      */
     public T dequeue() {
         // TODO: Dequeue the first item. Don't forget to decrease fillCount and update first
-        if (fillCount == 0) {
+        if (isEmpty()) {
             throw new RuntimeException("Ring buffer underflow");
         }
         T output = rb[first];
@@ -76,8 +76,9 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
         // TODO: Return the first item. None of your instance variables should change.
         if (isEmpty()) {
             throw new RuntimeException("Ring buffer underflow");
+        } else {
+            return rb[first];
         }
-        return rb[first];
     }
 
     // TODO: When you get to part 5, implement the needed code to support iteration.
@@ -108,13 +109,16 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
         arb.enqueue("t1");
         arb.enqueue("t2");
         arb.enqueue("t3");
+        System.out.println(arb.peek());
+        System.out.println(arb.fillCount);
+        System.out.println(arb.dequeue());
+        System.out.println(arb.peek());
         System.out.println(arb.first);
         System.out.println(arb.fillCount);
         System.out.println(arb.dequeue());
-        System.out.println(arb.first);
-        System.out.println(arb.fillCount);
-        System.out.println(arb.dequeue());
-        arb.enqueue("t3");
+        System.out.println(arb.peek());
+        arb.enqueue("t4");
+        System.out.println(arb.peek());
         System.out.println(arb.fillCount);
         System.out.println(arb.capacity);
     }

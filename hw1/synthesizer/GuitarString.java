@@ -19,6 +19,9 @@ public class GuitarString {
         //       accuracy, use the Math.round() function before casting.
         //       Your buffer should be initially filled with zeros.
         buffer = new ArrayRingBuffer((int) Math.round(SR / frequency));
+        for (int i = 0; i < buffer.capacity(); i += 1) {
+            buffer.enqueue(0.0);
+        }
     }
 
 
