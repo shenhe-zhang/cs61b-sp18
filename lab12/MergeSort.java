@@ -35,7 +35,14 @@ public class MergeSort {
     private static <Item extends Comparable> Queue<Queue<Item>>
             makeSingleItemQueues(Queue<Item> items) {
         // Your code here!
-        return null;
+        Queue<Queue<Item>> queue = new Queue<Queue<Item>>();
+        while (!items.isEmpty()) {
+            Item item = items.dequeue();
+            Queue<Item> q = new Queue<Item>();
+            q.enqueue(item);
+            queue.enqueue(q);
+        }
+        return queue;
     }
 
     /**
@@ -54,13 +61,50 @@ public class MergeSort {
     private static <Item extends Comparable> Queue<Item> mergeSortedQueues(
             Queue<Item> q1, Queue<Item> q2) {
         // Your code here!
-        return null;
+        Queue<Item> queue = new Queue<Item>();
+        while (!q1.isEmpty() || !q2.isEmpty()) {
+            queue.enqueue(getMin(q1,q2));
+        }
+        return queue;
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
     public static <Item extends Comparable> Queue<Item> mergeSort(
             Queue<Item> items) {
         // Your code here!
-        return items;
+        Queue<Item> new_items = items;
+        if (new_items.size() == 1) {
+            return new_items;
+        }
+        Queue<Item> q1 = new Queue<Item>();
+        Queue<Item> q2 = new Queue<Item>();
+        while (!new_items.isEmpty()) {
+            q1.enqueue(items.dequeue());
+            if (!new_items.isEmpty()) {
+                q2.enqueue(new_items.dequeue());
+            }
+            q1 = mergeSort(q1);
+            q2 = mergeSort(q2);
+        }
+        return mergeSortedQueues(q1,q2);
+//        return items;
+    }
+
+    public static void main (String[] args) {
+        Queue<String> languages = new Queue<>();
+        languages.enqueue("Python"); // Add my language-learning history
+        languages.enqueue("SQL");
+        languages.enqueue("Java");
+        languages.enqueue("Julia");
+        languages.enqueue("JavaScripts");
+        languages.enqueue("Lisp??");
+        languages.enqueue("Lisp??"); // Checks duplicated
+        Queue<String> sortedLanguages = MergeSort.mergeSort(languages);
+
+        // Should print `Python SQL Java Julia JavaScripts Lisp?? Lisp??`
+        System.out.println(languages.toString());
+        // Should print `Java JavaScript Julia Lisp?? Lisp?? Python SQL`
+//        System.out.println(sortedLanguages.toString());
+
     }
 }
