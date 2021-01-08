@@ -72,14 +72,18 @@ public class MergeSort {
     public static <Item extends Comparable> Queue<Item> mergeSort(
             Queue<Item> items) {
         // Your code here!
-        Queue<Item> new_items = items;
-        if (new_items.size() == 1) {
-            return new_items;
+
+        if (items.size() == 1) {
+            return items;
+        }
+        Queue<Item> new_items = new Queue<Item>();;
+        for (Item item:items) {
+            new_items.enqueue(item);
         }
         Queue<Item> q1 = new Queue<Item>();
         Queue<Item> q2 = new Queue<Item>();
         while (!new_items.isEmpty()) {
-            q1.enqueue(items.dequeue());
+            q1.enqueue(new_items.dequeue());
             if (!new_items.isEmpty()) {
                 q2.enqueue(new_items.dequeue());
             }
@@ -104,7 +108,7 @@ public class MergeSort {
         // Should print `Python SQL Java Julia JavaScripts Lisp?? Lisp??`
         System.out.println(languages.toString());
         // Should print `Java JavaScript Julia Lisp?? Lisp?? Python SQL`
-//        System.out.println(sortedLanguages.toString());
+        System.out.println(sortedLanguages.toString());
 
     }
 }
