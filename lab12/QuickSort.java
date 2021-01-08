@@ -48,12 +48,54 @@ public class QuickSort {
             Queue<Item> unsorted, Item pivot,
             Queue<Item> less, Queue<Item> equal, Queue<Item> greater) {
         // Your code here!
+
+        for (Item item:unsorted) {
+            int c = item.compareTo(pivot);
+            if (c < 0) {
+                less.enqueue(item);
+            } else if (c == 0) {
+                equal.enqueue(item);
+            } else {
+                greater.enqueue(item);
+            }
+        }
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
     public static <Item extends Comparable> Queue<Item> quickSort(
             Queue<Item> items) {
         // Your code here!
-        return items;
+        if (items.isEmpty()) {
+            return new Queue<Item>();
+        }
+        if (items.size() == 1) {
+            return items;
+        }
+        Queue<Item> sorted_items = new Queue<Item>();
+        Item pivot =  getRandomItem(items);;
+        Queue<Item> less = new Queue<Item>();
+        Queue<Item> equal = new Queue<Item>();
+        Queue<Item> greater = new Queue<Item>();
+        partition(items, pivot, less, equal, greater);
+        sorted_items = catenate(catenate(quickSort(less), equal), quickSort(greater));
+        return sorted_items;
+    }
+
+    public static void main (String[] args) {
+        Queue<String> languages = new Queue<>();
+        languages.enqueue("Python"); // Add my language-learning history
+        languages.enqueue("SQL");
+        languages.enqueue("Java");
+        languages.enqueue("Julia");
+        languages.enqueue("JavaScripts");
+        languages.enqueue("Lisp");
+        languages.enqueue("Lisp"); // Checks duplicated
+        Queue<String> sortedLanguages = QuickSort.quickSort(languages);
+
+        // Should print `Python SQL Java Julia JavaScripts Lisp?? Lisp??`
+        System.out.println(languages.toString());
+        // Should print `Java JavaScript Julia Lisp?? Lisp?? Python SQL`
+        System.out.println(sortedLanguages.toString());
+
     }
 }
