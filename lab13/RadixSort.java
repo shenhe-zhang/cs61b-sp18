@@ -68,7 +68,7 @@ public class RadixSort {
 
     private static int getchar(String s, int index) {
         if (s.length() <= index) {
-            return 32;
+            return 0;
         }
         return s.charAt(index);
     }
@@ -88,13 +88,15 @@ public class RadixSort {
         // Optional MSD helper method for optional MSD radix sort
         return;
     }
-//    public static void main(String args[]) {
-//        String[] testArr1 = {"alatn",  "hello", "succe", "donld", "hcdeh","heleh", "12321", "!*^&!"};
-//        String[] sorted = sort(testArr1);
-//        for (String s:sorted) {
-//            System.out.println(s);
-//        }
-//        String s = "adsafds";
-//        System.out.print(getchar(s,8));
-//    }
+    public static void main(String args[]) {
+        String[] testArr1 = {"alatn","¿»Q3[?,·×ïÛ2",  "hello", "succe", "donld", "hcdeh","heleh", "12321", "!*^&!"};
+        String[] testArr2 = {"31","45","453","4","534","78","101","4","78","345","0545","78"};
+//        String[] testArr2 = {"só", "¿»Q3[?,·×ïÛ2", "µu@ÝIè¼ìø1ú>eÖÿLøÌ",
+//        "'"8úÄìræ!¨Úd¨®ÃÓzÛÊß/`Oy¼x6ºo®3üÇ!¶üX7øÇ$ä:KÈ"ó"
+//                ,"*_e~ó,P}â~Ãß+","Ç+-¤}ñôy[Í»ìésk¢Á©_"};
+        String[] sorted = sort(testArr2);
+        for (String s:sorted) {
+            System.out.println(s);
+        }
+    }
 }
